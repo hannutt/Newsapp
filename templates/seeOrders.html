@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orders</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    </head>
+    <body>
+     
+        <h3>See orders & ordered items</h3>
+        <center>
+            <p><b>Total Orders: {{totOrd}}</b></p>
+            
+           
+           
+            <form action="/selection" method="POST">
+                <input type="checkbox" id="orditems" name="orditems" value="yes">
+                <label for="orditem">See only ordered items</label><br>
+                <input type="checkbox" id="orddate" name="orddate" value="yes">
+                <label for="orditem">See ordered items and order dates</label><br>
+                <input type="checkbox" id="all" name="all">
+                <label for="all">See all information</label><br>
+                <!--piilotetun kentän kautta välitetään kirjautuneen käyttäjän username
+                selection lomakkeen funktiolle-->
+                <input type="hidden" value="{{loggedUser}}" name="user">
+                <br>
+                <button class="Btn" type="submit">Excecute</button>
+            </form>
+            <br>
+            
+            <b><p> Current user: {{loggedUser}}</p></b><br>
+            
+            <form action="/logOut" method="post">
+      
+       <button class="Btn" type="submit">Log out</button>
+    </form>
+    </center> 
+        {% for row in rows %}
+        <table style="width:100%">
+            <tr>
+            <th>Ordered item</th>
+            <th>First and Lastname</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Order Date</th>
+            </tr>
+            <tr>
+            <td>{{row['OrderInfo']}}</td>
+            <td>{{row['Name']}}</td>
+            <td>{{row['Address']}}</td>
+            <td>{{row['Phone']}}</td>
+            <td>{{row['Email']}}</td>
+            <td>{{row['OrderDate']}}</td>
+            <br>
+            </tr>
+        </table>
+        
+        <form action="/delOrder" method="post">
+            <input type="hidden" value="{{row.OrderId}}" name="orderid">
+            <input type="hidden" id="userInput" name="userInput"> 
+            <!--confimDel javacript funktio lisää userinput kenttään arvon delete
+            jos käyttäjä vastaan myöntävästi poistamisen varmistukseen
+            jos arvo on true seeorders.py:n deleteOrder funktio toteuttaa poiston-->
+        <button class="Btn" type="submit" onclick="ConfirmDel()">X</button>
+       
+        
+    </form>
+        {%endfor%}
+
+        {% for row in items %}
+        <table style="width:100%">
+            <tr>
+            <th>Ordered item</th>
+        </tr>
+        <tr>
+        <td>{{row['OrderInfo']}}</td>
+        <br>
+        </tr>
+        </table>
+        {%endfor%}
+
+        {% for row in dates %}
+        <table style="width:100%">
+            <tr>
+            <th>Order date</th>
+            <th>Ordered item</th>
+        </tr>
+        <tr>
+        <td>{{row['OrderDate']}}</td>
+        <td>{{row['OrderInfo']}}</td>
+        <br>
+        </tr>
+        </table>
+        {%endfor%}
+
+       
+
+    </body>
+</html>

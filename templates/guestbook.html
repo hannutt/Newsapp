@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <title>Guestbook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+   
+
+    <script>
+        //jquery funktio jolla piilotetaan dayP nimisen p-tagin sisällä oleva sisältö
+        //kun tekstiä tuplaklikataan
+  
+    </script>
+</head>
+
+<body>
+ 
+    <h4>Write to guestbook</h4>
+    <p hidden>{{time}}</p>
+    <p hidden>{{clockTime}}</p>
+    <form action="/writeData" method="post">
+        <input type="text" name="nickname" placeholder="your nickname">
+
+        <input type="hidden" name="time" value={{time}}><br>
+        <input type="hidden" name="ctime" value={{clockTime}}>
+        <br>
+        <textarea rows="4" cols="50" name="message" placeholder="your message"></textarea>
+        <br><br>
+        <Button class="Btn" type="submit">Save</Button>
+    </form>
+    <form action="/showData" method="post">
+        <button class="Btn" type="submit">Show messages</button>
+    </form>
+
+    <form action="/searchData" class="searchClass" method="post">
+        <p>Search messages by nickname or date from database</p>
+        <input type="text" name="searchbox" id="searchbox">
+        <button class="Btn" type="submit">Search</button>
+    </form>
+    <br>
+    <input type="checkbox" class="txtsrcCB" id=txtSrc onclick="createTextSrc()">
+    <label for="txtSrc" class="freetxt">Free text search</label><br>
+    
+    <p><b><mark>{{nick}}</mark></b></p><br>
+    {%for row in Searchedrows %}
+    <p><mark>{{row['message']}}</p>
+
+    {% endfor %}
+
+
+
+
+    {%for row in rows %}
+
+    <!--yhdistetään row muuttuja tietokannan time, nickname ja message sarakkeeseen for silmukassa-->
+
+    <div class="message">
+        <p hidden>{{row['idnum']}}</p> <b>
+            <p style="font-size:18px">{{row['nickname']}} {{row['time']}} {{row['ctime']}}</p>
+        </b> {{row['message']}}
+    </div>
+
+    <form action="/delMsg" method="post">
+        <!--input kentän arvoksi kannan idnum arvo-->
+        <input type="hidden" id="iid" value="{{row.idnum}}" name="delmessage">
+        <button class="Btn" type="submit">X</button>
+    </form>
+   
+
+    <form action="/copyMsg" method="post">
+        <!--kopioitava teksti näytetään piilotetussa input-kentässä ->value="{{row.message}}"
+            että se voidaan tallentaa muuttujaan ja antaa clipboardille parametrina guestbook.py:ssä 
+            input kentälle voi antaa myös useamman valuen ks. alla
+            <input type="text" value="{{row.nickname}} wrote {{row.message}}" name="copymessage">-->
+        <input type="hidden" value="{{row.message}}" name="copymessage">
+        <button class="Btn" type="submit">Copy</button>
+    </form>
+
+    {% endfor %}
+    <form action="/hideData" method="post">
+        <button class="Btn" type="submit">Hide messages</button>
+    </form>
+    <br><br>
+    <button class="BtnLinks"><a href="/">Back to front page</a>
+    </button>
+
+</body>
+
+</html>

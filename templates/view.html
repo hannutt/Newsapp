@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View data</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    <body>
+        <h4>FlaskDb data</h4>
+        <table border="2">
+            <thead>
+                <td>ID</td>
+                <td>Country</td>
+                <td>Date</td>
+                <td>Total covids</td>
+            </thead>
+            <tr>
+            {%for row in rows %}
+        
+           
+            
+            <td>{{row['idnum']}}</td>
+            <td>{{row['country']}}</td>
+            <td>{{row['date']}}</td>
+            <td>{{row['amount']}}</td>
+            
+            <!--painikkeella poistaminen value=row.idnum, jolla saadaan poistettava id tietoon-->
+            <form action ="/delCovid" method="post">
+                <input type="hidden" value="{{row.idnum}}" name="delthis">
+            <td><button class="Btn" type="submit">Delete</button></td>
+        </form>
+        <form action="/editCov"method="post">
+            <td><button class="Btn" type="submit">Edit</button>
+                <input type="hidden" value="{{row.idnum}}" name="editthis"></td>
+            
+        </form>
+
+       
+        
+
+        
+    </form>
+        </tr>
+        
+        {% endfor %}
+        </table>
+        
+        <h3>{{IdNumber}}</h3>
+        <a href="/">Back to front page</a>
+    </body>
+</html>

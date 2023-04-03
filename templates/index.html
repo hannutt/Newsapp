@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>News-App 1.0</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        //jquery funktio jolla piilotetaan dayP nimisen p-tagin sisällä oleva sisältö
+        //kun tekstiä tuplaklikataan
+        $(document).ready(function(){
+            $("#dayP").dblclick(function(){
+                $(this).hide()
+            })
+        })
+    </script>
+   
+</head>
+
+<body>
+    <div class="headerDiv">
+        <h3> Web-scraping Flask App with SQLite database</h3>
+    </div>
+
+    <ul class="navbarUl">
+        <li class="navbarLi">
+        <li class="navbarLi"><a href="/chatbot">Chatbot</a></li>
+        <li class="navbarLi"><a href="/startwd">WD clone</a></li>
+
+        <li class="navbarLi"><a href="/networkInfo">Network info</a></li>
+        <li class="navbarLi"><a href="/chartspage">Charts</a></li>
+        <li class="navbarLi"><a href="/calcBtn">Calculator with buttons</a></li>
+        <li class="navbarLi"><a href="/vidplay">Video player</a></li>
+        <li class="navbarLi"><a href="/uploadimg">Image uploader & viewer</a></li>
+        <li class="navbarLi"><a href="/startTranslate">Word translator (drag & drop examples)</a></li>
+
+
+    </ul>
+
+    <br><br>
+    <center>
+        <p><b>Find text from page:</b></p>
+        <input type=text name="find" id="find" placeholder="Search">
+        <input type="button" value="Search" onclick="search(document.getElementById('find').value,'yellow')"/>
+        <p id="total"></p>
+    </center>
+
+    <center>
+        <div class="weatherDiv">
+            <h4>Helsinki 3 day weather: {{datetimePlace}} - {{datetimeEnd}}</h4>
+            <p> {{WeatherPlace}}</p>
+            <form action="/saveTxt" method="post">
+                <button class="Btn" type="submit">Save forecast to text file</button>
+        </div>
+        <br>
+       
+
+   
+
+    </form>
+    <div class="weekDiv">
+        <p>(doubleclick text to hide it)</p>
+        <p id="dayP">
+         <b>Now is week: {{weekPlace}}<br>
+         Day {{dayPlace}} of 365</b></p>
+        
+    </div>
+</center>
+    <div class="frontPageDiv">
+        <ul class="frontPageLinks">
+            <li><a href="/covid">Covid Cases</a></li>
+
+            <li><a href="/view">View saved data</a></li>
+
+            <li><a href="/write">Guestbook</a></li>
+            <li><a href="/quiz">Quiz</a></li>
+
+            <li><a href="/Webshop">Webshop</a></li>
+            <li><a href="/loginpage">See Order details</a></li>
+
+        </ul>
+    </div>
+    <center>
+        <h4>Search covid cases by country</h4>
+        <form action="" method="post">
+            <label for="lblcountry"><b>Country:</b> </label>
+            <br>
+            
+            <input type="text" name="countryName" placeholder="Country name">
+            <button class="Btn" type="submit">Search</button>
+        </form>
+    </center>
+    <div class="bottomDiv">
+        <h3>End of page</h3>
+    </div>
+</body>
+
+</html>

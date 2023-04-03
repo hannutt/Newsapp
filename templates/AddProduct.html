@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add new </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    <body>
+        <center><h3>Add new product to database</h3>
+            <form action="/Add" method="post">
+                <input type="text" name="productname" placeholder="Product name"><br><br>
+                <input type="text" name="productprice" placeholder="Product price"><br><br>
+                <input type="number" name="productstock" placeholder="In stock"><br><br>
+                <button class="Btn" type="submit">Add</button>
+
+            </form>
+        </center>
+
+    </body>
+</html>

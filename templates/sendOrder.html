@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Send order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+
+<body>
+    <center>
+    <h2>You are now ordering these items:</h2><br>
+    
+
+    <b>{{listPlace}}</b><br>
+    
+
+    <form action="delFromList" method="post">
+        
+         
+         {% for i in listPlace %}
+         
+        <!--
+        <select class="delmenu" id = "action" name = "Delmenu">
+            <option value="">{{i}}</option>
+
+         
+        </select><br>-->
+        <!--näytetään tuplen ensimmäinen ja viimeinen alkio-->
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+
+                
+            </tr>
+            <tr>
+        <td>{{i[1]}}</td>
+        <td>{{i[0]}}</td>
+        <td>{{i[-1]}} €</td>
+        <td> <button class="Btn" type="submit">Delete</button><br>
+        </td>
+        <br>
+        
+    </tr>
+   
+        <br>
+        <!--
+        <input type="text" name="orderrow" value="{{i[0]}},{{i[1]}},{{i[-1]}}">-->
+        {%endfor%}
+        
+        
+       <!--
+        <p><b>Total price: {{sumPlace}} €</b></p><br>
+        <p><b>Total quantity of items: {{quantityPlace}}</b></p>-->
+    </table>
+        
+        
+        
+        
+    </form>
+ 
+    
+    <p hidden>{{orderTime}}</p>
+     <h3 class="mailWrong">{{emailWrong}}</h3>
+    <h3>Please fill the Contact information</h3>
+    <form action="SaveDetails" method="post">
+        <input type="text" name="orderDate" value={{orderTime}} ><br>
+        <input type="text" name="flname" placeholder="Your first and lastname"><br>
+        <input type="text" name="addr" placeholder="Your address"><br>
+        <input type="text" name="phone" placeholder="Phone number"><br>
+        <input type="text" name="email" placeholder="E-mail"><br>
+        <button class="Btn" type="submit">Send</button><br>
+    </form>
+    <input type="checkbox" id="dif" onclick="difAdd()"></input>
+    <label for="dif">Send order to different address?</label>
+    <br>
+    
+    </center>
+</body>
+
+</html>

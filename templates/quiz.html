@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Quiz</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    <body>
+        <center>
+        <h2>Quiz</h2>
+        
+        <form action="quizForm" method="POST">
+            <!--listan läpikäynti 0.alkiosta jatketaan niin kauan kuin alkoita on-->
+            
+          
+            <p>{{questPlace}}</p>
+            
+            <input type="radio" name="q1" value="True">
+            <label for="Q1c">Yes</label>
+            <input type="radio" name="q1" value="False">
+            <label for="Q1f">No</label><br><br>
+          
+            
+
+            <p>{{questPlace2}}</p>
+
+            <input type="radio" name="q2" value="True">
+            <label for="Q1c">Yes</label>
+            <input type="radio" name="q2" value="False">
+            <label for="Q1f">No</label><br><br>
+
+            <p>{{questPlace3}}</p>
+
+            <input type="radio" name="q3" value="True">
+            <label for="Q1c">Yes</label>
+            <input type="radio" name="q3" value="False">
+            <label for="Q1f">No</label><br><br>
+          
+          
+
+            <p>{{questPlace4}}</p>
+
+            <input type="radio" name="q4" value="True">
+            <label for="Q1c">Yes</label>
+            <input type="radio" name="q4" value="False">
+            <label for="Q1f">No</label><br><br>
+          
+            <button class="Btn" type="submit">Answer</button><br><br>
+            
+           
+            
+        </form>
+
+        
+        <h3>{{answerPlace}}</h3><br><br>
+        <!--jos renderöintilauseessa on muuttuja var jonka arvo on done, näytetään try again formi ja 
+        painike-->
+        {% if var == 'done' %}
+        <h3>Points: {{pointsPlace}} / {{totalPlace}}</h3>
+        <form action="/tryAgain" method="post">
+            <button class="Btn" type="submit">Try again</button>
+        </form>
+        {%endif%}
+    </center>
+    
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Network information</title>
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <center>
+        <h2>Network information</h2>
+        <br>
+        <p>Your IP: {{ipPlace}} and hostname: {{hostPlace}}</p>
+        <form action="/connectiontest" method="post">
+            <button class="Btn" type="submit">Calc. connection speed</button>
+        </form>
+        <p id="downSpeed">Download speed: {{downloadPlace}}</p>
+        <br>
+        <p id="uploadSpeed">Upload speed: {{uploadPlace}}</p>
+
+        <button class="Btn" onclick="netSpeed()">Show in ChartJs</button>
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas><br>
+    </center>
+</body>
+
+</html>

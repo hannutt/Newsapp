@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Covid cases</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    
+    <body>
+        <a href="/">Frontpage</a> > <a href="/covid">Covid </a>
+        <h3>Total Covid cases</h3>
+        <h4> Total Covid cases in {{countryPlace}}</h4>
+        
+        <p>Total cases {{covDate}}: <b>{{CovidPlace}}</b></p>
+        
+        <!--/savedatalla yhdistetään covid.html sivun lomake ja haluttu funktio news.py tiedostossa. -->
+        <form action="/saveCovid" method="post">
+            <!--value komennolla asetetaan muuttujien sisältämät arvot syötekenttiin-->
+            <input type="text" name="date" value={{covDate}}>
+            <input type="text" name="country" value={{countryPlace}}>
+            <input type="text" name="amount" value={{CovidPlace}}>
+            <button class="Btn" type="submit">Save</button>
+            </form>
+    <a href="/">Back to front page</a>
+    </body>
+</html>

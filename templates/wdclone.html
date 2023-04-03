@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Worddive clone</title>
+    
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+
+<body>
+    <h3>Worddive clone</h3>
+    <p>What is {{wordPlace}} in finnish?</p><br>
+    <p id="checkp" hidden>{{checkPlace}}</p>
+    <p id="answ">{{answerPlace}}</p>
+    <p id="res"><b>{{resultPlace}}</b></p>
+
+    <p id="clicksCount"></p>
+
+    <!--funktion kutsu sivua ladatessa käytetää localstorage pisteiden muistamisessa
+    eli aina jos muuttujan checks arvo on ok kasvatetaan clickcounttia yhdellä-->
+    <script>
+        
+       
+        function clickCount() {
+            
+            var checks = document.getElementById('checkp').innerHTML;
+            if (checks == 'OK' && localStorage.clickcount) {
+                localStorage.clickcount = Number(localStorage.clickcount) + 1;
+                return localStorage.clickcount
+                
+               
+                
+               
+            }
+
+            else if (checks != 'OK' && localStorage.wrongClick)
+            {
+                localStorage.clickcount = Number(localStorage.clickcount) - 1;
+                localStorage.wrongClick = Number(localStorage.wrongClick) +1
+                return localStorage.clickcount
+
+            }
+
+         else {
+            localStorage.clickcount = 1;
+            localStorage.wrongClick = 0;
+            return localStorage.clickcount
+        }
+
+    }
+    //VARSINAINEN KUTSU TÄSSÄ
+    document.getElementById("clicksCount").innerHTML = 'Points: ' + window.clickCount();
+    </script>
+
+    
+    <!--
+    <button class="Btn" onclick="plus()">Clicks</button>-->
+
+    <form action="/checkWord" method="POST">
+
+
+
+        <input type="text" name="word" id="word" placeholder="Your answer"><br>
+
+        <button class="Btn" type="submit">Submit</button>
+    </form>
+    <button class="Btn" onclick="resetPoints()">Reset points</button>
+    <button class="Btn" onclick="stats()">Statistics</button>
+    <canvas id="myChart" style="width:100%;max-width:700px"></canvas><br>
+    <button class="Btn" onclick="closeStats()">Close</button>
+</body>
+
+</html>

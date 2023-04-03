@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Webshop</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+
+<body>
+ 
+  <center>
+    <h1>Welcome to my webshop</h1>
+    
+    <!--flash viestin näyttö sivulla
+    {% with messages = get_flashed_messages() %}
+ {% if messages %}
+  
+  {% for message in messages %}
+    <h2 class="flashmsg">{{ message }}</h2>
+  {% endfor %}
+  
+ {% endif %}
+{% endwith %}-->
+  </center>
+
+  
+
+  <center>
+    <a href="/AddProduct">
+      <h2 class="webshop">Add new product</h2>
+    </a>
+    <h3 class="webshop">Products available: {{totProd}}</h3>
+    <div class="shopBtn">
+      <form action="/cheapest" method="post">
+        <button class="Btn" type="submit">Cheapest first</button>
+      </form>
+      <br>
+      <form action="/expensive" method="post">
+        <button class="Btn" type="submit">Most expensive first</button>
+      </form>
+      <p>Use Discount code</p>
+      <form action="/sendDiscCode"method="post">
+        <input class="inputFields" type="text" name="discount" placeholder="Discount code"><br>
+        <br>
+        <button class="Btn" type="submit">Send code</button>
+      </form>
+    </div>
+    <form action="/searchproduct" method="post">
+      Type a product name: <input type="text" name="searchprod">
+      <button class="Btn" type="submit">Search</button>
+    </form>
+    <br>
+    <!--tuotteiden haku ja nimen&hinnan näyttö-->
+    {%for row in Searchedrows %}
+    <p>{{row['DESCR']}} {{row['Price']}}</p>
+
+    {% endfor %}
+    <p>{{NotFound}}</p>
+    <div class="sendBtn">
+    <form action="/sendOrd" method="post">
+      <button class="Btn" type="submit">Send order</button>
+    </form>
+    <br>
+  </div>
+    <br>
+  </center>
+  <br><br>
+
+  {%for row in rows%}
+
+  <!--
+       <p class="titlerow"><b>ID Product name Price</b></p>-->
+  <div class="prodDiv">
+
+    <div id="prod">
+
+      Prod nro: {{row['Idnum']}}<br>
+      <input type="hidden" name="prod" value="{{row['Descr']}}" id="prod">
+      {{row['Descr']}}<br>
+      Price: {{row['Price']}} €<br>
+      In stock: {{row['Instock']}}<br>
+      <!--plus ja minus painikkeet, oclick komennolla viittaus javascript funktioon
+      <button onclick="plus()">+</button>
+      <button onclick="minus()">-</button><br>-->
+      
+      
+
+      <!--jos varastosaldo on enemmän tai yhtä suuri kuin 5 näytetään vihreä merkki, alle 5 
+        keltainen ja nolla näytetään punaisena + syötekentän disablointi max komennolla
+      asetetaan input-kentän raja-arvo eli ei voi ostaa enempää kuin tuotetta on varastossa.-->
+      <form action="/AddCart" method="post">
+        {% if row.Instock == 0 %} <p class="colormarkRed"> {{stockPlace}}<br><br> <input class="inputFields"
+             type="number" name="amount" disabled> </p><br>
+
+
+        <button class="Btn" disabled>Add to cart</button>
+        {% elif row.Instock >= 5 %} <p class="colormarkGreen"> {{stockPlace}}<br><br> <input class="inputFields"
+          type="number" name="amount" value="0" id="amount" max="{{row.Instock}}"></p><br>
+         
+          
+            
+        <button class="Btn" onclick="cart()">Add to cart</button>
+        
+        {% elif row.Instock <= 5 %} <p class="colormarkYellow"> {{stockPlace}} <br><br> <input class="inputFields"
+          type="number" name="amount" value="0" max="{{row.Instock}}"></p><br>
+            
+          <button class="Btn" onclick="cart()">Add to cart</button>
+          
+
+         
+          {% else %}
+          {% endif %}
+         
+    </div>
+  </div>
+
+
+    <!--piilotteuja input kenttiä value arvona on tietokannasta tulevat tiedot-->
+    <input type="hidden" name="prod" value="{{row['Descr']}}" id="descr">
+    <input type="hidden" name="price" value="{{row['Price']}}" id="price">
+    <input type="hidden" name="pcode" value="{{row['Pcode']}}">
+
+
+    </form>
+
+  {%endfor%}

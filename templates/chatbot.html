@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chatbot</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <body>
+            <form action="symptonsForm" method="post">
+                <h3>What kind of sympton do you have</h3><br>
+                <center>
+
+                <p>Select Country</p>
+       
+            <!--PUDOTUSVALIKKO-->
+            
+            <select class="chatbotsel" id = "action" name = "chatmenu">
+                <option value="112">FI</option>
+                <option value="911">US</option>
+                <option value="100">GR</option>
+                <option value="999">UA</option>
+            </select>
+            <br>
+                    <p>Write symptons here:</p>
+                <input type="text" name="sympton">
+                <button class="Btn" type="submit">Send</button>
+            </center>
+            </form>
+            <center>
+                <p><b> {{answerPlace}}</b></p>
+               
+            </center>
+        </body>
+    </head>
+</html>

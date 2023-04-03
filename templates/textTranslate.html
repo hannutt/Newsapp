@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Text translate</title>
+        <script src="{{url_for('static', filename='DragScripts.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    </head>
+    <body>
+        <h3>Text translate</h3>
+        <form action="/doTranslate" method="POST">
+        <select name="fromLang" id="fromLang">
+            <option value="german">German</option>
+            <option value="english">English</option>
+        </select>
+        <br>
+        
+        <select name="toLang" id="toLang">
+            <option value="spanish">Spanish</option>
+            <option value="german">German</option>
+        </select>
+        <br>
+        <p>You can drag and drop this examples to the input fiels</p>
+        <p id="Good morning" style="color:blue"  draggable="true" ondragstart="dragStart(event)">Good morning</p> 
+        <p id="Good afternoon" style="color:blue" draggable="true" ondragstart="dragStart(event)">Good afternoon </p>
+        <p>Write word here:</p>
+        <input type="text" id="translateWord" name="translateWord" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <button class="Btn" type="submit">Translate</button>
+    </form>
+    <b>{{wordPlace}}</b>
+    </body>
+</html>

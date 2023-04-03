@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register page</title>
+        <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    </head>
+    <body>
+        <center>
+            <form action="/regUser" method="post">
+            <h3>New user</h3>
+            <br>
+            <p>Username:</p>
+            <input type="text" name="username"><br>
+            <p>password:</p>
+            <input id="psw1" type="password" name="password"><br>
+            <p>password again:</p>
+            <input id="psw2" type="password" name="passwordagain"><br>
+            <button class="Btn" type="submit">Register</button>
+            </form>
+            <br>
+            <input type="checkbox" id="show" onclick="typeChanger()">
+            <label for="show">Show passwords</label>
+            <br>
+
+        </center>
+    </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Charts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <a href="/">Frontpage</a> > <a href="/chartspage">Charts</a>
+    <center>
+        <!--JOS OP MUUTTUJAN ARVO ON BAR, NÄYTETÄÄN SIVULLA ALLAOLEVAt html elementit-->
+        {% if op == 'bar' %}
+        <h3>Draw barchart</h3>
+        <label for="color">Choose a color:</label>
+
+        <select name="color" id="color">
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+        </select>
+        <br>
+
+        <label for="textvalues">Bar label</label>
+        <input type="text" name="textvalues" id="textvalues"><br>
+        <label for="numvalues">Bar numeric value</label>
+        <input type="text" name="numvalues" id="numvalues"><br>
+        <button class="Btn" type="submit" onclick="barChart()">Create</button>
+        <button class="Btn" type="submit" name="add" id="add" onclick="addList()">Add</button>
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas><br>
+        <button class="Btn" id="saveBtn" onclick="download()">Save</button>
+
+        {% elif op == 'pie' %}
+        <h3>Draw Piechart</h3>
+        <label for="color">Choose a color:</label>
+
+        <select name="color" id="color">
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+        </select>
+        <br>
+        <label for="textvalues">PieChart label</label>
+        <input type="text" name="textvalues" id="textvalues"><br>
+        <label for="numvalues">PieChart numeric value</label>
+        <input type="text" name="numvalues" id="numvalues"><br>
+        <button class="Btn" type="submit" name="add" id="add" onclick="addList()">Add</button>
+        <button class="Btn" type="submit" onclick="pieChart()">Create</button>
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas><br>
+
+        {% elif op == 'plot' %}
+
+
+
+
+        {% else %}
+        <h3>Draw charts</h3>
+
+        <form action="/chartsBar" method="post">
+
+            <button class="Btn" type="submit">Draw bars</button>
+        </form>
+
+        <form action="/chartsPie" method="post">
+
+            <button class="Btn" type="submit">Draw piechart</button>
+        </form>
+        
+
+        <form action="/drawPlots" method="post">
+            <p>Start value</p>
+            <input type="number" name="startVal">
+            <p>End Value:</p>
+            <input type="number" name="endVal">
+            <br><br>
+
+
+            <form action="select" method="post">
+
+
+                <label for="size">Choose a width and height of chart:</label>
+
+
+
+                <select name="size" id="size">
+                    <option value="500">500x500</option>
+                    <option value="600">600x600</option>
+                    <option value="700">700x700</option>
+                    <option value="800">800x800</option>
+                </select>
+                <label for="color">Select chart background color</label>
+
+                <select name="color" id="color">
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="yellow">Yellow</option>
+                </select>
+                <br>
+                <!--
+            <button class="Btn" value="addList" name="AddBtn" type="submit">Add</button>-->
+                <button class="Btn" value="drawChart" name="DrawBtn" type="submit">Draw</button><br>
+
+                <img src="data:image/png;base64, {{ plot_url }}" width={{chartWidth}} height={{chartHeight}}
+                    alt="Your chart"><br>
+            </form>
+            <form action="saveDraw" method="post">
+                <button class="Btn" value="saveChart" name="saveBtn" type="submit">Save</button>
+
+            </form>
+    </center>
+</body>
+
+</html>
+{% endif %}

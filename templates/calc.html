@@ -1,0 +1,40 @@
+
+<html>
+    <head>
+        <title>Calculator</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    <body>
+        
+        <h4>Calculator</h4>
+        <p class="selectionp">Select operator</p>
+        <form action="/calculate" method="POST">
+            <!--PUDOTUSVALIKKO-->
+            
+            <select class="selectionmenu" id = "action" name = "menu">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+       
+        
+            
+            <p>Number 1</p>
+            <input type="number" name="num1"><br>
+            <p>Number 2</p>
+            <input type="number" name="num2">
+            <!--
+            <button class="calcBtn" name="btn1" value=1 >1</button>
+            <button class="calcBtn" name="btn2" value=2 >2</button>-->
+            <button class="calcBtn" type="submit">Calculate</button>
+        </form>
+       
+        <p><b>Result is: {{resultPlace}}</b></p>
+
+        <button class="BtnLinks"><a href="/">Back to front page</a></button>
+        
+        
+        
+    </body>
+</html>

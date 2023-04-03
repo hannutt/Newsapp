@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    </head>
+
+    <body>
+        <center>
+        <h3>Login page</h3>
+        <form action="loginForm" method="post">
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="password" name="password" id ="psw1" placeholder="password">
+            <input type="checkbox" id="show" onclick="typeChanger()">
+            <label for="show">Show password</label><br>
+            <label class="lblsaveLocal" for="saveLocal">Remember me?</label>
+            <input class="saveLocal" type="checkbox" id="saveLocal" onclick="rememberMe()"><br>
+            <button class="Btn" onclick="getUser()">Get username</button><br>
+            
+            
+            
+            
+            <button class="Btn" type="submit">Login</button>
+        </form>
+        
+        <br>
+        <div class="frontPageDiv">
+            <ul class="frontPageLinks">
+        
+            <li> <a href="/Forget">Forget password?</a><br></li>
+            <li><a href="/changePage">Change password</a><br></li>
+            <li><a href="/register">Register</a></li>
+            </ul>
+        </div>
+       
+        
+        
+        </ul>
+    </center>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Calc with buttons</title>
+        <script src="{{url_for('static', filename='scripts.js')}}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    <body>
+        <p><mark>{{row1}} {{row2}} {{row3}} = {{res}}</mark></p>
+        <p>Click input field to activate it</p>
+        <input id="number1" type="text" name="num1" ><br>
+        <br>
+        <input id="number2" type="text" name="num2" ><br>
+        <!--this.valuella saadaan jokaisen painikkeen value kenttään kirjoitettu arvo-->
+        <button class="calBtn" id="1" name="btn1" type="submit" value="1" onclick="calculate(this.value)">1</button>
+        <button class="calBtn" id="2" name="btn2" value="2"type="submit"onclick="calculate(this.value)">2</button>
+        <button class="calBtn" id="3" name="btn3" value="3"type="submit"onclick="calculate(this.value)">3</button><br>
+        <button class="calBtn" id="4" name="btn4" value="4"type="submit"onclick="calculate(this.value)">4</button>
+        <button class="calBtn" id="5" name="btn5" value="5"type="submit"onclick="calculate(this.value)">5</button>
+        <button class="calBtn" id="6" name="btn6" value="6"type="submit"onclick="calculate(this.value)">6</button><br>
+        <button class="calBtn" id="7" name="btn7" value="7"type="submit"onclick="calculate(this.value)">7</button>
+        <button class="calBtn" id="8" name="btn8" value="8"type="submit"onclick="calculate(this.value)">8</button>
+        <button class="calBtn" id="9" name="btn9" value="9"type="submit"onclick="calculate(this.value)">9</button><br>
+        <button class="calBtn" id="0" name="btn0" value="0"type="submit"onclick="calculate(this.value)">0</button>
+        <button class="calBtn" id="+" name="operator" value="+" type="submit" onclick="operator(this.value)">+</button>
+        <button class="calBtn" id="-" name="operator" value="-" type="submit" onclick="operator(this.value)">-</button>
+        <button class="calBtn" id="*" name="operator" value="*" type="submit"onclick="operator(this.value)">*</button><br>
+        <button class="calBtn" id="/" name="operator" value="/" type="submit" onclick="operator(this.value)">/</button>
+        <button class="calBtn" id="pow" name="operator" value="pow" type="submit"onclick="operator(this.value)">pow</button>
+        <button class="calBtn" name="clear" type="submit" onclick="clear()">C</button>
+        
+        <form action="/calculateBtn" method="post">
+           
+            <input id="number3" name="num3" type="hidden"><br>
+            <input id="number4" name="num4" type="hidden"><br>
+            
+            <input id="operator" name="operator" type="text"><br>
+           
+           
+            <button class="Btn" type="submit">Calculate</button>
+        </form>
+    
+        
+       
+    
+    </body>
+</html>

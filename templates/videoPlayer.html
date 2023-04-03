@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Video player</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+
+<body>
+    <a href="/">Frontpage</a> > <a href="/vidplay">Video player</a>
+    <center>
+        <!--op ja sen arvo määritellään ja lähetetään videoplayer.py tiedostossa-->
+        {% if op == 'all' %}
+        <h3>Video player</h3>
+
+        <form action="/size" method="post">
+            <label for="videoSize">Choose video size</label>
+            <select name="videoSize" id="videoSize" type="submit">
+                <option value="">Choose size</option>
+                <option value="300">400x400</option>
+                <option value="400">400x400</option>
+                <option value="500">500x500</option>
+            </select>
+            <button class="Btn" value="change" name="changeBtn" type="submit">change size</button><br>
+
+            <br>
+
+            <iframe src="https://www.youtube.com/embed/RK1K2bCg4J8?autoplay=1" width="{{widthVal}}"
+                height="{{heightVal}}"></iframe>
+
+        </form>
+
+
+        <form action="/ownLink" method="post">
+
+            <button class="Btn" type="submit">Play own video</button>
+        </form>
+        <br>
+        <form action="/upload" method="post">
+            <button class="Btn" type="submit">Upload video</button>
+        </form>
+    </center>
+
+    {% elif op =='own' %}
+    <center>
+        <h3>Video player</h3>
+        <input type="file" id="input" multiple />
+
+        
+        <input type="text" name="url" id="url" placeholder="video link"><br>
+    
+        <button class="Btn" type="submit" name="loadBtn" value="load" onclick="ownLink()">Load</button><br>
+        <p id="filesize"></p>
+        <iframe id="iframe" src="https://www.google.com" width="400" height="400"></iframe>
+    </center>
+    {% elif op == 'video' %}
+    <h3>Upload video</h3>
+    <br>
+    <form action="/uploader" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" />
+    </form>
+    <br>
+    <!--
+    <h3>Play video</h3>
+    <br>
+
+    <input type="text" id="filepath" name="filepath" placeholder="Filepath">
+    <input type="button" value="play" onclick="video()">
+    <video id="video" autoplay="autoplay" controls>
+        <source id="source" src="/static/upload/sample.mp4" type="video/mp4">
+    </video>-->
+
+
+</body>
+
+
+</html>
+{% endif %}

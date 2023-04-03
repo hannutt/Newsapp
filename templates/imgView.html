@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image viewer</title>
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+
+<body>
+        <h3>Upload files</h3>
+        <form action="/uploader" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" />
+            <input type="submit" />
+        </form>
+
+        <h3>View images</h3>
+        
+        <form action="/displayer" method="post">
+            <input type="text" name="filepath" placeholder="filepath">
+            <button class="Btn" type="submit">Open</button>
+            <br> <br>
+            <img src="{{imgPlace}}" width="200" height="200">
+        </form>
+    </body>
+
+   
+
+</html>
