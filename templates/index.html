@@ -9,13 +9,15 @@
     <script>
         //jquery funktio jolla piilotetaan dayP nimisen p-tagin sisällä oleva sisältö
         //kun tekstiä tuplaklikataan
-        $(document).ready(function(){
-            $("#dayP").dblclick(function(){
+        $(document).ready(function () {
+            $("#dayP").dblclick(function () {
                 $(this).hide()
             })
         })
     </script>
-   
+
+    
+  
 </head>
 
 <body>
@@ -40,9 +42,10 @@
 
     <br><br>
     <center>
+        
         <p><b>Find text from page:</b></p>
         <input type=text name="find" id="find" placeholder="Search">
-        <input type="button" value="Search" onclick="search(document.getElementById('find').value,'yellow')"/>
+        <input type="button" value="Search" onclick="search(document.getElementById('find').value,'yellow')" />
         <p id="total"></p>
     </center>
 
@@ -52,21 +55,26 @@
             <p> {{WeatherPlace}}</p>
             <form action="/saveTxt" method="post">
                 <button class="Btn" type="submit">Save forecast to text file</button>
+                <br>
+                
         </div>
         <br>
-       
 
-   
 
-    </form>
-    <div class="weekDiv">
-        <p>(doubleclick text to hide it)</p>
-        <p id="dayP">
-         <b>Now is week: {{weekPlace}}<br>
-         Day {{dayPlace}} of 365</b></p>
-        
-    </div>
-</center>
+
+
+        </form>
+        <div class="weekDiv">
+            <p>(doubleclick text to hide it)</p>
+            <p id="dayP">
+                <b>Your current place: {{positionPlace}}<br>
+                    Wind speed in current location: {{currentWeather}}<br>
+                    Now is week: {{weekPlace}}<br>
+                    Day {{dayPlace}} of 365</b>
+            </p>
+
+        </div>
+    </center>
     <div class="frontPageDiv">
         <ul class="frontPageLinks">
             <li><a href="/covid">Covid Cases</a></li>
@@ -78,6 +86,7 @@
 
             <li><a href="/Webshop">Webshop</a></li>
             <li><a href="/loginpage">See Order details</a></li>
+            <li><a href="/cryptPage">Encrypt/Decrypt text</a></li>
 
         </ul>
     </div>
@@ -86,7 +95,7 @@
         <form action="" method="post">
             <label for="lblcountry"><b>Country:</b> </label>
             <br>
-            
+
             <input type="text" name="countryName" placeholder="Country name">
             <button class="Btn" type="submit">Search</button>
         </form>

@@ -1,10 +1,5 @@
 
-var textval = []
-var numval = []
-var barColors = [];
-var valueList = []
-var labelList = ['right', 'wrong']
-var labelSpeed = ['Download', 'upload']
+
 var speeds = []
 
 /*
@@ -121,42 +116,9 @@ function netSpeed() {
 }
 //kaavioiden piirto local storagesta haetuilla arvoilla
 //alustetaan myChart funktion ulkopuolella, että sitä voidaan stats closestats funktioissa
-var myChart = ''
-function stats() {
-    var correct = localStorage.getItem('clickcount')
-    valueList.push(correct)
-
-    var wrong = localStorage.getItem('wrongClick')
-    valueList.push(wrong)
-
-    console.log(correct)
-    console.log(wrong)
-
-    myChart = new Chart("myChart", {
-        type: "bar",
-        data: {
-            labels: labelList,
-            datasets: [{
-                backgroundColor: 'red',
-                data: valueList
-            }]
-        },
-        options: {
-            legend: { display: false },
-            title: {
-                display: true,
-                text: "Your clicks"
-
-            }
-        }
-    });
-}
 
 //tuhotaan pylväsdiagrammi
-function closeStats() {
 
-    myChart.destroy();
-}
 //localstoragen arvojen nollaus
 function resetPoints() {
     localStorage.setItem('clickcount', 0)
@@ -233,73 +195,7 @@ function video() {
 }
 
 
-function barChart() {
 
-
-    new Chart("myChart", {
-        type: "bar",
-        data: {
-            labels: textval,
-            datasets: [{
-                backgroundColor: barColors,
-                data: numval
-            }]
-        },
-        options: {
-            legend: { display: false },
-            title: {
-                display: true,
-                text: "Barchart"
-
-            }
-        }
-    });
-}
-
-function pieChart() {
-
-    new Chart("myChart", {
-        type: "pie",
-        data: {
-            labels: textval,
-            datasets: [{
-                backgroundColor: barColors,
-                data: numval
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Piechart"
-            }
-        }
-    });
-}
-
-//funktio lisää käyttäjän syöttämät arvot 2 eri listaan
-function addList() {
-
-    var col = document.getElementById("color").value
-    var label = document.getElementById('textvalues').value;
-    var numbers = document.getElementById('numvalues').value;
-
-    textval.push(label)
-    console.log(textval)
-    numval.push(numbers)
-    barColors.push(col)
-    console.log(numval)
-    document.getElementById('textvalues').value = "";
-    document.getElementById('numvalues').value = "";
-}
-
-function download() {
-    const imageLink = document.createElement('a')
-    const canvas = document.getElementById('myChart')
-    imageLink.download = 'canvas.png';
-    imageLink.href = canvas.toDataURL('image/png', 1)
-    console.log(imageLink.href)
-    imageLink.click()
-}
 
 
 
@@ -450,43 +346,6 @@ function calculate(thisVal) {//jos check muuttujan arvo on yes
 }
 
 
-
-
-
-
-
-
-
-
-
-
-/*
-function calculate(thisVal)
-{
-    const numbers = []
-    numbers.push(thisVal)
-    //jos number1 ja number2 kentät ovat tyhjiä
-   if (number1.value.length==0 && number2.value.length==0)
-   {    
-    document.getElementById('number1').value = numbers
-
-    //piilotettu calculate formin sisällä oleva input kenttä
-    document.getElementById('number3').value = thisVal;
-    
-    
-
-   }
-   else
-   {
-    document.getElementById('number2').value = thisVal;
-
-     //piilotettu calculate formin sisällä oleva input kenttä
-    document.getElementById('number4').value = thisVal;
-    
-
-   }
-
-}*/
 function operator(thisVal) {
     document.getElementById('operator').value = thisVal
 }

@@ -8,9 +8,10 @@ wdclone = Blueprint('wdclone', __name__,static_folder='static', template_folder=
 def startWd():
 
     global words
-    words = ['Good','bad','coffee','charger','car','bike']
+    words = ['Good','bad','coffee','charger','car','bike','food','orange','blue','red']
     global answers
-    answers = ['hyvä','huono','kahvi','laturi','auto','pyörä']
+    answers = ['hyvä','huono','kahvi','laturi','auto','pyörä','ruoka','appelsiini',
+               'sininen','punainen']
     global randowWord
     randowWord = random.choice(words)
     #words ja answer listan indeksi paikat vastaavat toisiaan eli words[0] == answers[0]
@@ -36,12 +37,12 @@ def checkWords():
         #redirectin avulla saadaan oikean vastauksen jälkeen renderöityä correct teksti
         #ja uusi satunnaissana listalta automaattisesti eli kutsutaan html-sivua ja startWd funktiota.
         return redirect(url_for('wdclone.startWd',result='correct',check='OK'))
-    #jos kirjoitetun sanan ja kysytyn sanan ensimmäinen kirjain on sama
-    elif word[0] == answerIndex[0]:
-        return redirect(url_for('wdclone.startWd',result='first letter was right!',check=''))
-    #jos vastaus on väärä renderöidään pelkästään wdclone.html uudelleen
+    #tarkistetaan onko kaksi ensimmäistä kirjainta on oikein
+    elif word[:2] == answerIndex[:2]:
+        return redirect(url_for('wdclone.startWd',result='first two letters was right!',check='goodstart'))
+    #jos vastaus on väärä renderöidään pelkästään wdclone.html 
     else:
-        return render_template('wdclone.html',wordPlace=randowWord,answerPlace='Wrong, try again!')
+        return render_template('wdclone.html',wordPlace=randowWord,answerPlace='Wrong, try again!',check='wrong')
   
    
     

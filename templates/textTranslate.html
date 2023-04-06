@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Text translate</title>
-        <script src="{{url_for('static', filename='DragScripts.js')}}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    </head>
-    <body>
-        <h3>Text translate</h3>
-        <form action="/doTranslate" method="POST">
-        <select name="fromLang" id="fromLang">
-            <option value="german">German</option>
-            <option value="english">English</option>
-        </select>
-        <br>
-        
+
+<head>
+    <title>Text translate</title>
+    <script src="{{url_for('static', filename='DragScripts.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <h3>Text translate</h3>
+    <form action="/doTranslate" method="POST">
+        <p>Select language</p><br>
         <select name="toLang" id="toLang">
             <option value="spanish">Spanish</option>
             <option value="german">German</option>
+            <option value="english">English</option>
+            <option value="french">French</option>
+            <option value="chinese">Chinese</option>
         </select>
         <br>
         <p>You can drag and drop this examples to the input fiels</p>
-        <p id="Good morning" style="color:blue"  draggable="true" ondragstart="dragStart(event)">Good morning</p> 
+        <div id="expDiv1">
+            <span id="Good morning" style="color:blue" draggable="true" ondragstart="dragStart(event)">Good morning</span>
+        </div>
         <p id="Good afternoon" style="color:blue" draggable="true" ondragstart="dragStart(event)">Good afternoon </p>
         <p>Write word here:</p>
-        <input type="text" id="translateWord" name="translateWord" ondrop="drop(event)" ondragover="allowDrop(event)">
+        
+        <input type="text" id="translateWord" name="translateWord" onfocus="changeColor()" ondrop="drop(event)" ondragover="allowDrop(event)">
+    
         <button class="Btn" type="submit">Translate</button>
     </form>
-    <b>{{wordPlace}}</b>
-    </body>
+   
+    <h4>in {{lngPlace}} : {{wordPlace}}</h4>
+    <br>
+    <p>time went: {{timePlace}}</p>
+</body>
+
 </html>

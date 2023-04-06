@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Crypt</title>
+</head>
+
+<body>
+    <h3>Encrypt your text</h3>
+    <form action="/startCrypting" method="post">
+        <textarea id="yourText" name="yourText" rows="5" cols="30">
+
+    </textarea>
+        <button class="Btn" type="submit" name="EncBtn" value="DoEnc">Encrypt</button>
+
+        <p>Your text in encrypted</p>
+        <p>{{textPlace}}</p>
+        <br>
+        <p hidden>{{keyPlace}}</p>
+        <!--
+        <input type="text" name="message" value="{{textPlace}}"><br>
+        
+        <input type="text" name="keyValue" value="{{keyPlace}}"><br>
+        <button class="Btn" type="submit" name="DecBtn" value="DoDenc">Decrypt</button>-->
+        <br>
+        <p>Your text in decrypted</p><br>
+        {{detextPlace}}
+    </form>
+
+</body>
+
+</html>

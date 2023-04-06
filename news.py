@@ -6,7 +6,11 @@ import datetime
 from datetime import date, timedelta
 import time
 import random
-from art import *
+import geocoder
+from haversine import haversine, Unit
+from geopy.geocoders import Nominatim
+
+
 from calc import calc
 
 from guestbook import guestbook
@@ -28,6 +32,7 @@ from imgView import imgView
 from webshop2 import webshop2
 from wdclone import wdclone
 from textTranslate import textTranslate
+from Crypt import Crypt
 
 
 import sqlite3
@@ -53,6 +58,7 @@ app.register_blueprint(imgView,url_prefix='')
 app.register_blueprint(webshop2,url_prefix='')
 app.register_blueprint(wdclone,url_prefix='')
 app.register_blueprint(textTranslate,url_prefix='')
+app.register_blueprint(Crypt,url_prefix='')
 
 
 app.secret_key = "key"
@@ -87,10 +93,11 @@ def weather():
 
     #funktiokutsu, näin voidaan käyttää useampaa funktiota samalla routella.
     weekNumberDayNum()
+    currentPosWeather()
 
        
     #muuttuja var näytetään index.html:n varPlace kohdassa.
-    return render_template('index.html',WeatherPlace=result,datetimePlace=globcurrent,datetimeEnd=globend,weekPlace=res,dayPlace=day)
+    return render_template('index.html',WeatherPlace=result,datetimePlace=globcurrent,datetimeEnd=globend,weekPlace=res,dayPlace=day,positionPlace=city,currentWeather=OneDayResult)
 
 
 def weekNumberDayNum():
@@ -108,8 +115,37 @@ def weekNumberDayNum():
         res = week.text
         #korvataan tuloksen viikko sana tyhjillä merkeillä, eli saadaan ainoastaan viikon numero
         res = res.replace('Viikko','')
-        
 
+#selvitetään koordinaattien avulla tämänhetkinen kaupunki
+def currentPosWeather():
+    geolocator = Nominatim(user_agent="geoapiExercises")
+    g = geocoder.ip('me')
+    #laitteen sijaintikoordinaatit g.lat ja g.lng
+    lat = g.lat
+    lng = g.lng
+    #muutto merkkijonoksi että geolocator hyväksyy ne parametreina
+    finalLat = str(lat)
+    finalLng = str(lng)
+    #kaupungin nimen selvittäminen koordinaateilla
+    location = geolocator.reverse(finalLat+","+finalLng)
+
+    address = location.raw['address']
+    global city
+    global OneDayResult
+    city = address.get('city', '')
+    page = requests.get('https://www.foreca.fi/'+'finland'+'/'+city)
+    soup = BeautifulSoup(page.text, 'html.parser')
+    #etsitään sivulta parametrina oleva div-luokka
+    oneday = soup.find(class_='dayfc')
+    #etsitään div-luokasta kaikki p tagin sisällä oleva
+    #teksti
+    
+    onedayfinal = oneday.find_all('p')
+    for oneday in onedayfinal:
+
+        
+        #tallennetaan tulos result muuttujaan
+        OneDayResult = oneday.text
 
 
 @app.route('/saveTxt',methods=['POST','GET'])
