@@ -34,7 +34,7 @@
 
         <form action="/ownLink" method="post">
 
-            <button class="Btn" type="submit">Play own video</button>
+            <button class="Btn" type="submit">Play uploaded video</button>
         </form>
         <br>
         <form action="/upload" method="post">
@@ -50,7 +50,7 @@
         
         <input type="text" name="url" id="url" placeholder="video link"><br>
     
-        <button class="Btn" type="submit" name="loadBtn" value="load" onclick="ownLink()">Load</button><br>
+        <button class="Btn" type="submit" name="loadBtn" value="load" onclick="ownVideoLink()">Load</button><br>
         <p id="filesize"></p>
         <iframe id="iframe" src="https://www.google.com" width="400" height="400"></iframe>
     </center>

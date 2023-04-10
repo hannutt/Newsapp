@@ -5,6 +5,7 @@ import time
 import datetime
 from time import strftime
 from datetime import date
+import re
 
 textTranslate = Blueprint('textTranslate', __name__,static_folder='static', template_folder='templates')
 
@@ -16,16 +17,22 @@ def startTranslate():
 
 @textTranslate.route('/doTranslate',methods=['POST','GET'])
 def doTrans():
+    #regex laisekkeen kaava, etsitään vain numeroita
+    digitspattern = '^[0-9]+$'
+    #etsitään kirjaimia ja numeroita samasta lausekkeesta
+    
     word = request.form['translateWord']
     toLn = request.form.get('toLang')
+    #tarkistetaan regexillä löytyykö word muuttujasta kirjaimia ja numeroita
+    digitresult = re.match(digitspattern,word)
     #translator= Translator(to_lang=toLn)
     #translation = translator.translate(word)
 
-    
-    if word == '':
+    #jos word on true, eli muuttujassa on numeroita ja kirjaimia
+    if word.isdigit() == True:
+        return render_template('textTranslate.html',wordPlace="Can't translate numbers!")
+    elif word == '':
         return render_template('textTranslate.html',wordPlace='Please type a word')
-    elif StopIteration == True:
-        return render_template('textTranslate.html',wordPlace='cant translate this')
 
     else:
         # timer eli lasketaan kuinka kauan käännöksen valmistumiseen menee aikaa.

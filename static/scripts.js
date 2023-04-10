@@ -1,5 +1,5 @@
 
-
+var labelSpeed = ['Download', 'upload']
 var speeds = []
 
 /*
@@ -171,7 +171,7 @@ function search(text, backgroundColor) {
 
 
 //tällä funktiolla vaihdetaan iframe sourcea eli annetaan toistettavan videon sijainti
-function ownLink() {
+function ownVideoLink() {
 
 
     //tallennetaan muuttujaan files oliotaulukon ensimäinen eli 0-kohta(tiedostonnimi)
@@ -183,9 +183,36 @@ function ownLink() {
     var playtime = document.getElementById("input").files[4];
     console.log(playtime)
     document.getElementById("filesize").value = playtime
+    //näytetään valittu tiedosto
     document.getElementById('iframe').src = '/static/upload/' + playfile
 
+}
 
+function ownImageLink() {
+
+        const preview = document.querySelector("img");
+        const file = document.querySelector("input[type=file]").files[0];
+        const reader = new FileReader();
+      
+        reader.addEventListener(
+          "load",
+          () => {
+            // convert image file to base64 string
+            preview.src = reader.result;
+          },
+          false
+        );
+      
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      
+      
+    /*
+    const selectedImg = document.getElementById('img').files[0];
+    var showImage = document.getElementById('imgurl').value = selectedImg.name
+    document.getElementById('imgView').src = '/static/upload/'+ showImage;
+    */
 }
 
 function video() {

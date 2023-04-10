@@ -15,8 +15,13 @@
 
         <p>Your text in encrypted</p>
         <p>{{textPlace}}</p>
+    </form>
         <br>
         <p hidden>{{keyPlace}}</p>
+
+        <form action="/startDecrypting" method = "post">
+        <button class="Btn" type="submit" name="DecBtn">Decrypt</button>
+
         <!--
         <input type="text" name="message" value="{{textPlace}}"><br>
         
@@ -26,6 +31,7 @@
         <p>Your text in decrypted</p><br>
         {{detextPlace}}
     </form>
+   
 
 </body>
 

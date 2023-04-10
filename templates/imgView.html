@@ -7,20 +7,31 @@
 </head>
 
 <body>
+        <!--
         <h3>Upload files</h3>
+        
         <form action="/uploader" method="POST" enctype="multipart/form-data">
             <input type="file" name="file" />
             <input type="submit" />
-        </form>
+        </form>-->
 
         <h3>View images</h3>
-        
+        <!--
         <form action="/displayer" method="post">
             <input type="text" name="filepath" placeholder="filepath">
             <button class="Btn" type="submit">Open</button>
             <br> <br>
             <img src="{{imgPlace}}" width="200" height="200">
-        </form>
+        </form>-->
+        
+        <input type="file" onchange="ownImageLink()"  />
+
+         <!--
+        <input type="text" name="url" id="imgurl" placeholder="image link"><br>
+       
+        <button class="Btn" type="submit" name="loadBtn" value="load" onchange="ownImageLink()">Load</button><br>
+        -->
+        <img src="" width="200" height="200">
     </body>
 
    

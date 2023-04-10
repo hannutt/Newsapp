@@ -17,7 +17,7 @@ uploadFolder = 'static/upload'
 def uploadPage():
     return render_template('imgView.html')
 
-#html lomakkeen kautta valitun kuvan tallennus
+#html lomakkeen kautta valitun kuvan tallennus eli upload
 @imgView.route('/uploader',methods=['POST','GET'])
 def uploadImg():
     #f-muuttujaan tallennetaan file nimisen-html lomakkeen kautta saaatava tiedosto
@@ -32,5 +32,5 @@ def uploadImg():
 
 @imgView.route('/displayer',methods=['POST','GET'])
 def open():
-    filepath = request.form['filepath']
+    filepath = request.files['img']
     return render_template('imgView.html',imgPlace=filepath)
