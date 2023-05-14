@@ -28,7 +28,7 @@ def doTrans():
     #translator= Translator(to_lang=toLn)
     #translation = translator.translate(word)
 
-    #jos word on true, eli muuttujassa on numeroita ja kirjaimia
+    #jos word on true, eli muuttujassa on numeroita ja kirjaimia. isdigit = vain numeroita
     if word.isdigit() == True:
         return render_template('textTranslate.html',wordPlace="Can't translate numbers!")
     elif word == '':
