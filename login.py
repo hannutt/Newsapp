@@ -19,6 +19,8 @@ def loginToPage():
         password = request.form['password']
         with sqlite3.connect('Flaskdb.db') as connection:
             connection.row_factory = sqlite3.Row
+              #kirjautuminen, tarkisteaan onko input-kenttii syötetty samat arvot, kuin mitä on login
+            #taulun username ja password sarakkeissa
             cursor = connection.execute('SELECT * FROM LOGIN WHERE USERNAME=? AND PASSWORD=?',(username,password))
             
             row = cursor.fetchone()
