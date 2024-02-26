@@ -29,7 +29,7 @@ from register import register
 from calcBtn import calcBtn
 from videoPlayer import videoPlayer
 from imgView import imgView
-from webshop2 import webshop2
+
 from wdclone import wdclone
 from textTranslate import textTranslate
 from Crypt import Crypt
@@ -55,7 +55,7 @@ app.register_blueprint(register,url_prefix='')
 app.register_blueprint(calcBtn,url_prefix='')
 app.register_blueprint(videoPlayer,url_prefix='')
 app.register_blueprint(imgView,url_prefix='')
-app.register_blueprint(webshop2,url_prefix='')
+
 app.register_blueprint(wdclone,url_prefix='')
 app.register_blueprint(textTranslate,url_prefix='')
 app.register_blueprint(Crypt,url_prefix='')

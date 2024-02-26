@@ -7,8 +7,8 @@ Some features:
 -internet connection speed test.
 -a simple discussion board.
 -experimental online store. the orders are saved in the database and an email is sent about the new order. You can also add new items to store, update and delete them.
--Text translate
--Text crypting 
--Draw charts with ChartJS
--Log in and register features
--a simple pun contest
+-Text translate.
+-Text crypting .
+-Draw charts with ChartJS.
+-Log in and register features.
+-a simple pun contest.
