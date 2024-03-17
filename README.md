@@ -1,6 +1,7 @@
 Webapp made with python Flask and JavaScript.
 
 Main features:
+
 Automatic data search, you can search for covid virus infection data using the web-scaping library. just enter the name of the country and the program will search.
 Automatic 3-day weather forecast search.
 
