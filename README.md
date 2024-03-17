@@ -14,6 +14,6 @@ Smaller features:
 
 Text translate, made with Translator library.
 Text crypting, made with Cryptographty Fernet.
-Draw own charts with ChartJS.
-image viewer, select the image and it will be displayed on the program's html page.
-video player, select the image and it will be displayed on the program's html page.
+Draw own charts with JavaScript ChartJS library.
+Image viewer, select the image and it will be displayed on the program's html page.
+Video player, select the video and it will be displayed on the program's html page.
