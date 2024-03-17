@@ -118,7 +118,7 @@ def weekNumberDayNum():
 
 #selvitetään koordinaattien avulla tämänhetkinen kaupunki
 def currentPosWeather():
-    geolocator = Nominatim(user_agent="geoapiExercises")
+    geolocator = Nominatim(user_agent="geoapi")
     g = geocoder.ip('me')
     #laitteen sijaintikoordinaatit g.lat ja g.lng
     lat = g.lat
